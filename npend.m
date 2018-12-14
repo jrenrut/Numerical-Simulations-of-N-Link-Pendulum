@@ -615,7 +615,6 @@ while done == 0
         f = @(t, z) npend_NE(z, p, Mf, bf);
         [t, z] = ode45(f, tspan, z0, opts);
         cd('../');
-        [s_y, s_F] = audioread('bioh2.mp3');
     elseif ptype == 'l' || ptype == 'm'
         Mf = ['npend_alphas_Lagrange_M_', num2str(n)];
         bf = ['npend_alphas_Lagrange_b_', num2str(n)];
@@ -623,7 +622,6 @@ while done == 0
         f = @(t, z) npend_Lagrange(z, p, Mf, bf);
         [t, z] = ode45(f, tspan, z0, opts);
         cd('../');
-        [s_y, s_F] = audioread('wtlb.mp3');
     elseif prob == 'p'
         Mf = ['npend_alphas_DAE_M_', num2str(n)];
         bf = ['npend_alphas_DAE_b_', num2str(n)];
@@ -632,7 +630,6 @@ while done == 0
         f = @(t, z) npend_DAE(z, p, t, Mf, bf);
         [t, z] = ode45(f, tspan, z0, opts);
         cd('../');
-        [s_y, s_F] = audioread('md.mp3');
     else
         Mf = ['nlink_alphas_DAE_M_', num2str(n+1)];
         bf = ['nlink_alphas_DAE_b_', num2str(n+1)];
@@ -641,7 +638,6 @@ while done == 0
         f = @(t, z) nlink_DAE(z, p, t, Mf, bf);
         [t, z] = ode45(f, tspan, z0, opts);
         cd('../');
-        [s_y, s_F] = audioread('o.mp3');
     end
 
 % ------------------------------------------------------------------------%
@@ -734,7 +730,6 @@ while done == 0
         if ptype == 'd' && prob == 'l' && offset2 == 0
             plot([0 xend], [0 yend],  'color', [0.6350, 0.0780, 0.1840], 'LineWidth', 2);
         end
-        sound(s_y, s_F)
         for i=1:length(t)
             pl = plot(xs(i,:), ys(i,:), 'r', 'LineWidth', 2);
             if rq ~= 0
@@ -760,8 +755,6 @@ while done == 0
                 set(pl, 'Visible', 'off')
             end            
         end
-
-        clear sound
         
         figure
         plot(t, E)
@@ -831,7 +824,7 @@ while done == 0
                 svnm = '';
             end
         end
-        save([path, '/animations/', svnm, '.mat'], 'n', 't', 'xs', 'ys', 'thetas', 's_y', 's_F', 'ptype', 'prob', 'L', 'xend', 'yend', 'tol', 'E', 'rq', 'dst', 'mode', 'freq')
+        save([path, '/animations/', svnm, '.mat'], 'n', 't', 'xs', 'ys', 'thetas', 'ptype', 'prob', 'L', 'xend', 'yend', 'tol', 'E', 'rq', 'dst', 'mode', 'freq')
     end
 
 % ------------------------------------------------------------------------%
