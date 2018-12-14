@@ -133,7 +133,6 @@ for i=1:length(t)
         end
     end
 end
-clear sound
 
 f1 = strrep(f1, '_', '\_');
 f2 = strrep(f2, '_', '\_');
