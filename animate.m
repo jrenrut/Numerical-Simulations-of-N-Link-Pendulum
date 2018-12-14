@@ -27,7 +27,6 @@ function animate = func(fn)
     hold on
     xlabel('x'); ylabel('y'); title(['n = ', num2str(n)]);
     plot([0 xend], [0 yend],  'color', [0.6350, 0.0780, 0.1840], 'LineWidth', 2);
-    sound(s_y, s_F)
     for i=1:length(t)
         pl = plot(xs(i,:), ys(i,:), 'r', 'LineWidth', 2);
         if rq ~= 0
@@ -53,7 +52,6 @@ function animate = func(fn)
             set(pl, 'Visible', 'off')
         end            
     end
-    clear sound
     
     figure
     plot(t, E)
